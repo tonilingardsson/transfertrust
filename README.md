@@ -23,7 +23,7 @@ TransferTrust aims to streamline ownership transfers of assets like vehicles, re
 
 ## **Installation**  
 1. Clone the repository:  
-   Run: 'git clone https://github.com/your-username/TransferTrust.git  
+   Run: 'git clone https://github.com/tonilingardsson/transfertrust.git  
    cd TransferTrust'
 2. Install dependencies:
 Run: 'npm install'
