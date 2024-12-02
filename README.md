@@ -23,6 +23,29 @@ TransferTrust aims to streamline ownership transfers of assets like vehicles, re
 
 ## **Installation**  
 1. Clone the repository:  
-   ```bash  
-   git clone https://github.com/your-username/TransferTrust.git  
-   cd TransferTrust  
+   Run: 'git clone https://github.com/your-username/TransferTrust.git  
+   cd TransferTrust'
+2. Install dependencies:
+Run: 'npm install'
+3. Start the development server:
+Run: 'npm run dev'
+
+## **Usage**
+Register or log in using a Web3 wallet (e.g., MetaMask).
+Initiate an asset verification process.
+Transfer ownership securely via smart contracts.
+
+## **Roadmap**
+    - Complete project planning and design.
+    - Develop the React front-end.
+     - Implement smart contracts in Solidity.
+     - Integrate Moralis for blockchain interaction.
+     - Test and deploy the application.
+
+## **License**
+This project is licensed under the MIT License. See the LICENSE file for details.
+
+## **Acknowledgments**
+    - Moralis: For providing excellent blockchain integration tools.
+    - OpenZeppelin: For reusable smart contract libraries.
+    - Minima Global Team: For guidance and recommendations during the project development phase.
