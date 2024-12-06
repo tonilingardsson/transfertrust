@@ -1,9 +1,12 @@
 {
   "name": "transfertrust",
+  "lockfileVersion": 3,
+  "requires": true,
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "start": "node src/index.js",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
