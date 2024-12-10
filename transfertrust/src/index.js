@@ -71,6 +71,10 @@ app.get("/demo", async (req, res) => {
 const startServer = async () => {
     await Moralis.start({
         apiKey: MORALIS_API_KEY,
+        // Not required, defaults to "https://rpc.sepolia.org/"
+        // formatEvmAddress: "checksum",
+        // formatChainId: "decimal",
+        // logLevel: "verbose",
     });
 
     app.listen(port, () => {
