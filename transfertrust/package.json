@@ -6,7 +6,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "start": "node src/index.js",
+    "start": "node src/npm index.js",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
