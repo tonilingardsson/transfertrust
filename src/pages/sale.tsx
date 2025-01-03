@@ -51,7 +51,22 @@ export default function Home() {
               <div className='flex'>
                 <div className='flex flex-col justify-flex-start'>
                   <h2>💳 Price: </h2>
-                  <input type='number' placeholder='Amount in USCD' /> USCD
+                </div>
+                <div className='flex flex-col justify-flex-start '>
+                  <br />
+                  <input type='text' placeholder='Token ID' id='tokenID' />
+                  <input type='text' placeholder='Price (in USCD)' id='price' />
+                  <button
+                    className='iekbcc0 iekbcc9 ju367v78 ju367v7t ju367v9i ju367vn ju367vei ju367vf3 ju367v16 ju367v1h ju367v2g ju367v8u _12cbo8i3 ju367v8r _12cbo8i4 _12cbo8i6'
+                    onClick={() => {
+                      const tokenID = document.getElementById('tokenID')
+                        ?.value as string;
+                      const price = document.getElementById('price')
+                        ?.value as string;
+                    }}
+                  >
+                    🧾 List for Sale
+                  </button>
                 </div>
                 <div className='flex flex-col justify-flex-start '>
                   <br />
@@ -59,7 +74,7 @@ export default function Home() {
                     className='iekbcc0 iekbcc9 ju367v78 ju367v7t ju367v9i ju367vn ju367vei ju367vf3 ju367v16 ju367v1h ju367v2g ju367v8u _12cbo8i3 ju367v8r _12cbo8i4 _12cbo8i6'
                     onClick={() => {}}
                   >
-                    🔁 Transfer
+                    🔁 Sell the car
                   </button>
                 </div>
               </div>
