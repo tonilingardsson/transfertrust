@@ -13,10 +13,7 @@ import path from 'path';
 import fs from 'fs';
 
 export async function getStaticProps() {
-  const filePath = path.join(
-    process.cwd(),
-    'src/public/data/carCertificate.json'
-  );
+  const filePath = path.join(process.cwd(), 'src/data/carCertificate.json');
   const jsonData = fs.readFileSync(filePath, 'utf-8');
   const carCertificate = JSON.parse(jsonData);
 

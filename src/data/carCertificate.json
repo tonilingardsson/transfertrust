@@ -1,0 +1,21 @@
+{
+    "tokenId": 1,
+    "owner": "0x1234567890abcdef1234567890abcdef12345678",
+    "carDetails": {
+        "vin": "1HGCM82633A123456",
+        "make": "Toyota",
+        "model": "Corolla",
+        "year": 2018,
+        "currentMileage": 45000,
+        "cpuErrors": "No errors detected",
+        "lastServiceMileage": 42000,
+        "serviceHistory": "Oil change at 42000 miles, Brake pad replacement at 38000 miles",
+        "insuranceHistory": "Policy active, last renewal: June 2024",
+        "price": 15000
+    },
+    "saleProposal": {
+        "buyer": null,
+        "price": 0,
+        "isActive": false
+    }
+}
