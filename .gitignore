@@ -36,5 +36,15 @@ dist-ssr
 
 # misc
 /utils/config.ts
+
+# build output
 .next/
+out/
+next-env.d.ts
+.vercel
+*.tsbuildinfo
+
+# cache
+.cache/
+*pack
 *.pack.gz
