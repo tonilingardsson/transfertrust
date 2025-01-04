@@ -1,10 +1,6 @@
 {
   "/_app": "pages/_app.js",
-  "/_document": "pages/_document.js",
   "/_error": "pages/_error.js",
-  "/sale": "pages/sale.js",
-  "/shareddata": "pages/shareddata.js",
-  "/certificate": "pages/certificate.js",
-  "/saleSuccess": "pages/saleSuccess.js",
-  "/main": "pages/main.js"
+  "/_document": "pages/_document.js",
+  "/sale": "pages/sale.js"
 }

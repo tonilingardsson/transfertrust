@@ -36,7 +36,5 @@ dist-ssr
 
 # misc
 /utils/config.ts
-.next/static/
-.next/cache/
-.next/build/
+.next/
 *.pack.gz

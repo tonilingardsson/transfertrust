@@ -19,30 +19,10 @@ self.__BUILD_MANIFEST = {
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/certificate": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/certificate.js"
-    ],
-    "/main": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/main.js"
-    ],
     "/sale": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/sale.js"
-    ],
-    "/saleSuccess": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/saleSuccess.js"
-    ],
-    "/shareddata": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/shareddata.js"
     ]
   },
   "ampFirstPages": []
