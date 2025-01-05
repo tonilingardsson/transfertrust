@@ -38,7 +38,7 @@ dist-ssr
 /utils/config.ts
 
 # build output
-.next/
+.next
 out/
 next-env.d.ts
 .vercel

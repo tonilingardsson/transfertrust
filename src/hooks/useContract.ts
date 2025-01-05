@@ -18,3 +18,24 @@ export const implementContract = () => {
 
   return contract;
 };
+
+export function useProposeSale() {
+  const { writeContract } = useWriteContract();
+
+  const proposeSale = async (tokenId: string, buyerAddress: string) => {
+    try {
+      const { write } = await writeContract({
+        address: CONTRACT_ADDRESS,
+        abi: CONTRACT_ABI,
+        functionName: 'transferFrom',
+        args: [tokenId, buyerAddress],
+      });
+      return write();
+    } catch (error) {
+      console.error('Propose sale error:', error);
+      throw error;
+    }
+  };
+
+  return { proposeSale };
+}

@@ -5,30 +5,33 @@ import Head from 'next/head';
 import '@rainbow-me/rainbowkit/styles.css';
 import { implementContract } from '../hooks/useContract';
 import { useState } from 'react';
-import { CONTRACT_ADDRESS } from '../utils/config';
-import { parse } from 'path';
+import { CONTRACT_ADDRESS } from '../utils/abi';
+import { parseEther } from 'viem';
+import { useProposeSale } from '../hooks/useContract';
 
 const TRANSFERTRUST_CONTRACT_ADDRESS = CONTRACT_ADDRESS;
 
 export default function Home() {
   const { isConnected } = useAccount();
+  const { proposeSale } = useProposeSale();
   const contract = implementContract();
   const [tokenId, setTokenId] = useState('');
+  const [buyerAddress, setBuyerAddress] = useState('');
   const [price, setPrice] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleProposeSale = async () => {
+    if (!tokenId || !buyerAddress) return;
+
     try {
-      const tx = await contract?.proposeSale(
-        parseInt(tokenID),
-        'BUYER_ADDRESS',
-        parseInt(price)
-      );
-      await tx.wait();
-      console.log('Sale proposed successfully:', tx);
+      setIsLoading(true);
+      await proposeSale(tokenId, buyerAddress);
       alert('Sale proposed successfully');
     } catch (error) {
       console.error('Error proposing sale:', error);
       alert('Error proposing sale');
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -72,21 +75,22 @@ export default function Home() {
                   placeholder='Token ID'
                   value={tokenId}
                   onChange={(e) => setTokenId(e.target.value)}
+                  className='mb-2 p-2 border rounded'
                 />
                 <input
                   type='text'
-                  placeholder='Price (in USCD)'
-                  value={price}
-                  onChange={(e) => setPrice(e.target.value)}
+                  placeholder='Buyer Address'
+                  value={buyerAddress}
+                  onChange={(e) => setBuyerAddress(e.target.value)}
+                  className='mb-2 p-2 border rounded'
                 />
-                <div className=' flex justify-center'>
-                  <button
-                    className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
-                    onClick={handleProposeSale}
-                  >
-                    Propose Sale
-                  </button>
-                </div>
+                <button
+                  onClick={handleProposeSale}
+                  disabled={isLoading}
+                  className='bg-blue-500 text-white p-2 rounded'
+                >
+                  {isLoading ? 'Processing...' : 'Transfer Ownership'}
+                </button>
               </div>
             </article>
           </section>

@@ -738,6 +738,10 @@ export const CONTRACT_ABI = [
     type: 'function',
   },
   {
+    type: 'function',
+    name: 'proposeSale',
+    outputs: [],
+    stateMutability: 'nonpayable',
     inputs: [
       {
         internalType: 'uint256',
@@ -755,10 +759,6 @@ export const CONTRACT_ABI = [
         type: 'uint256',
       },
     ],
-    name: 'proposeSale',
-    outputs: [],
-    stateMutability: 'nonpayable',
-    type: 'function',
   },
   {
     inputs: [],

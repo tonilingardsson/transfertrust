@@ -5,7 +5,7 @@ import Head from 'next/head';
 import '@rainbow-me/rainbowkit/styles.css';
 import { implementContract } from '../hooks/useContract';
 import { useState } from 'react';
-import { CONTRACT_ADDRESS } from '../utils/config';
+import { CONTRACT_ADDRESS } from '../utils/abi';
 
 const TRANSFERTRUST_CONTRACT_ADDRESS = CONTRACT_ADDRESS;
 
