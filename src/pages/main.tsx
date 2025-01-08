@@ -3,57 +3,85 @@ import { useAccount } from 'wagmi';
 import styles from '../styles/Home.module.css';
 import Head from 'next/head';
 import '@rainbow-me/rainbowkit/styles.css';
-import { implementContract } from '../hooks/useContract';
-import { useState } from 'react';
-import { CONTRACT_ADDRESS } from '../utils/abi';
+import { useMintCertificate } from '../hooks/useContract';
+import { useEffect, useState } from 'react';
+import { CONTRACT_ABI, CONTRACT_ADDRESS } from '../utils/abi';
+import { log } from 'console';
+import { useWriteContract } from 'wagmi';
 
 const TRANSFERTRUST_CONTRACT_ADDRESS = CONTRACT_ADDRESS;
 
 export default function Home() {
+  const { writeContract } = useWriteContract();
   const { isConnected } = useAccount();
-  const contract = implementContract();
-  const [vehicles, setVehicles] = useState({
-    vin: '',
-    make: '',
-    model: '',
-    year: '',
-    currentMileage: '',
-    cpuErrors: '',
-    lastServiceMileage: '',
-    serviceHistory: '',
-    insuranceHistory: '',
-    price: '',
-  });
+  const { mintCertificate } = useMintCertificate();
+  const [isLoading, setIsLoading] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setVehicles({
-      ...vehicles,
-      [e.target.name]: e.target.value,
-    });
-  };
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
-  const handleSubmit = async () => {
+  const handleMint = async () => {
     try {
-      const tx = await contract?.createCarStatusCertificate(
-        vehicles.vin,
-        vehicles.make,
-        vehicles.model,
-        parseInt(vehicles.year),
-        parseInt(vehicles.currentMileage),
-        vehicles.cpuErrors,
-        parseInt(vehicles.lastServiceMileage),
-        vehicles.serviceHistory,
-        vehicles.insuranceHistory,
-        parseInt(vehicles.price)
-      );
-      await tx.wait();
-      console.log('Certificate created successfully:', tx);
-      alert('Certificate created successfully');
+      setIsLoading(true);
+      writeContract({
+        abi: CONTRACT_ABI,
+        address: TRANSFERTRUST_CONTRACT_ADDRESS,
+        functionName: 'createCarStatusCertificate',
+        args: [
+          'VIN123',
+          'Toyota',
+          'Corolla',
+          BigInt(2021),
+          BigInt(1000),
+          'No errors',
+          BigInt(500),
+          'Service history',
+          'Insurance history',
+          BigInt(10000),
+        ],
+      });
     } catch (error) {
-      console.error('Error creating certificate:', error);
-      alert('Error creating certificate');
+      console.error('Minting failed:', error);
+      alert('Failed to create certificate');
+    } finally {
+      setIsLoading(false);
     }
   };
+
+  if (!mounted) {
+    return null; // Render nothing on the server
+  }
+  // const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   setVehicles({
+  //     ...vehicles,
+  //     [e.target.name]: e.target.value,
+  //   });
+  // };
+
+  // const handleSubmit = async () => {
+  //   try {
+  //     const tx = await contract?.createCarStatusCertificate(
+  //       vehicles.vin,
+  //       vehicles.make,
+  //       vehicles.model,
+  //       parseInt(vehicles.year),
+  //       parseInt(vehicles.currentMileage),
+  //       vehicles.cpuErrors,
+  //       parseInt(vehicles.lastServiceMileage),
+  //       vehicles.serviceHistory,
+  //       vehicles.insuranceHistory,
+  //       parseInt(vehicles.price)
+  //     );
+  //     await tx.wait();
+  //     console.log('Certificate created successfully:', tx);
+  //     alert('Certificate created successfully');
+  //   } catch (error) {
+  //     console.error('Error creating certificate:', error);
+  //     alert('Error creating certificate');
+  //   }
+  // };
 
   return (
     <div className={styles.container}>
@@ -63,7 +91,7 @@ export default function Home() {
           content='TransferTrust App for creating and managing vehicle certificates'
           name='TransferTrust App'
         />
-        <link src='./src/styles/images/logo.png' rel='icon' />
+        <img src='../styles/images/logo.png' rel='icon' />
       </Head>
       <nav className='bg-white shadow-lg'>
         <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
@@ -94,74 +122,13 @@ export default function Home() {
               <h2 className='text-xl font-semibold mb-4'>
                 Create New Vehicle Certificate
               </h2>
-              <div className='flex flex-col'>
-                <input
-                  type='text'
-                  name='vin'
-                  placeholder='VIN'
-                  onChange={handleChange}
-                />
-                <input
-                  type='text'
-                  name='make'
-                  placeholder='Make'
-                  onChange={handleChange}
-                />
-                <input
-                  type='text'
-                  name='model'
-                  placeholder='Model'
-                  onChange={handleChange}
-                />
-                <input
-                  type='number'
-                  name='year'
-                  placeholder='Year'
-                  onChange={handleChange}
-                />
-                <input
-                  type='number'
-                  name='currentMileage'
-                  placeholder='Current Mileage'
-                  onChange={handleChange}
-                />
-                <input
-                  type='text'
-                  name='cpuErrors'
-                  placeholder='CPU Errors'
-                  onChange={handleChange}
-                />
-                <input
-                  type='number'
-                  name='lastServiceMileage'
-                  placeholder='Last Service Mileage'
-                  onChange={handleChange}
-                />
-                <input
-                  type='text'
-                  name='serviceHistory'
-                  placeholder='Service History'
-                  onChange={handleChange}
-                />
-                <input
-                  type='text'
-                  name='insuranceHistory'
-                  placeholder='Insurance History'
-                  onChange={handleChange}
-                />
-                <input
-                  type='number'
-                  name='price'
-                  placeholder='Price'
-                  onChange={handleChange}
-                />
-                <button
-                  className='iekbcc0 iekbcc9 ju367v78 ju367v7t ju367v9i ju367vn ju367vei ju367vf3 ju367v16 ju367v1h ju367v2g ju367v8u _12cbo8i3 ju367v8r _12cbo8i4 _12cbo8i6'
-                  onClick={handleSubmit}
-                >
-                  Create Certificate
-                </button>
-              </div>
+              <button
+                onClick={handleMint}
+                disabled={isLoading}
+                className='bg-blue-500 text-white p-2 rounded'
+              >
+                {isLoading ? 'Creating...' : 'Create Certificate'}
+              </button>
             </article>
           </section>
         ) : (
