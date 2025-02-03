@@ -30,7 +30,7 @@ export default function Home() {
         address: TRANSFERTRUST_CONTRACT_ADDRESS,
         functionName: 'createCarStatusCertificate',
         args: [
-          'VIN123',
+          '123456',
           'Toyota',
           'Corolla',
           BigInt(2021),
@@ -53,35 +53,6 @@ export default function Home() {
   if (!mounted) {
     return null; // Render nothing on the server
   }
-  // const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   setVehicles({
-  //     ...vehicles,
-  //     [e.target.name]: e.target.value,
-  //   });
-  // };
-
-  // const handleSubmit = async () => {
-  //   try {
-  //     const tx = await contract?.createCarStatusCertificate(
-  //       vehicles.vin,
-  //       vehicles.make,
-  //       vehicles.model,
-  //       parseInt(vehicles.year),
-  //       parseInt(vehicles.currentMileage),
-  //       vehicles.cpuErrors,
-  //       parseInt(vehicles.lastServiceMileage),
-  //       vehicles.serviceHistory,
-  //       vehicles.insuranceHistory,
-  //       parseInt(vehicles.price)
-  //     );
-  //     await tx.wait();
-  //     console.log('Certificate created successfully:', tx);
-  //     alert('Certificate created successfully');
-  //   } catch (error) {
-  //     console.error('Error creating certificate:', error);
-  //     alert('Error creating certificate');
-  //   }
-  // };
 
   return (
     <div className={styles.container}>

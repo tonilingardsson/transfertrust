@@ -569,6 +569,16 @@ export const CONTRACT_ABI = [
         name: '',
         type: 'uint256',
       },
+      {
+        internalType: 'string',
+        name: '',
+        type: 'string',
+      },
+      {
+        internalType: 'address',
+        name: '',
+        type: 'address',
+      },
     ],
     stateMutability: 'nonpayable',
     type: 'function',
@@ -594,10 +604,16 @@ export const CONTRACT_ABI = [
   },
   {
     inputs: [
+      // {
+      //   internalType: 'uint256',
+      //   name: '_tokenId',
+      //   type: 'uint256',
+      // },
+      // I am testing using the vin instead of the tokenId to get the car details
       {
-        internalType: 'uint256',
-        name: '_tokenId',
-        type: 'uint256',
+        internalType: 'string',
+        name: '_vin',
+        type: 'string',
       },
     ],
     name: 'getCarDetails',

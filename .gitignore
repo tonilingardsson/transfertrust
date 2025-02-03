@@ -48,3 +48,4 @@ next-env.d.ts
 .cache/
 *pack
 *.pack.gz
+.DS_Store
