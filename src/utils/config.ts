@@ -5,6 +5,6 @@ export const config = createConfig({
   chains: [mainnet, sepolia],
   transports: {
     [mainnet.id]: http(),
-    [sepolia.id]: http(),
+    [sepolia.id]: http('https://rpc.ankr.com/eth_sepolia'),
   },
 });
