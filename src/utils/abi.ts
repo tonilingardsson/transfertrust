@@ -604,17 +604,17 @@ export const CONTRACT_ABI = [
   },
   {
     inputs: [
-      // {
-      //   internalType: 'uint256',
-      //   name: '_tokenId',
-      //   type: 'uint256',
-      // },
-      // I am testing using the vin instead of the tokenId to get the car details
       {
-        internalType: 'string',
-        name: '_vin',
-        type: 'string',
+        internalType: 'uint256',
+        name: '_tokenId',
+        type: 'uint256',
       },
+      // I am testing using the vin instead of the tokenId to get the car details
+      // {
+      //   internalType: 'string',
+      //   name: '_vin',
+      //   type: 'string',
+      // },
     ],
     name: 'getCarDetails',
     outputs: [
