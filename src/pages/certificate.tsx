@@ -12,7 +12,7 @@ export default function CertificatePage() {
   const { isConnected } = useAccount();
   const [isLoading, setIsLoading] = useState(false);
   const [mounted, setMounted] = useState(false);
-  const [vin, setVin] = useState('');
+  const [tokenId, setTokenId] = useState('');
 
   useEffect(() => {
     setMounted(true);
@@ -27,8 +27,8 @@ export default function CertificatePage() {
     abi: CONTRACT_ABI,
     address: TRANSFERTRUST_CONTRACT_ADDRESS,
     functionName: 'getCarDetails',
-    args: vin ? [vin] : undefined,
-    enabled: Boolean(vin),
+    args: [+tokenId],
+    enabled: Boolean(tokenId) && tokenId.length > 0,
   });
 
   /* const readNFT = async () => {
@@ -60,7 +60,7 @@ export default function CertificatePage() {
   // }; */
 
   const readNFT = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setVin(e.target.value);
+    setTokenId(e.target.value);
   };
 
   if (!mounted) {
@@ -85,8 +85,8 @@ export default function CertificatePage() {
           <div className='mt-8'>
             <input
               type='text'
-              placeholder='Enter VIN'
-              value={vin}
+              placeholder='Enter Token ID'
+              value={tokenId}
               onChange={readNFT}
               className='border border-gray-300 rounded-md px-4 py-2'
             />
@@ -97,7 +97,13 @@ export default function CertificatePage() {
             {certificate && (
               <div className='mt-4'>
                 <h2>NFT Data:</h2>
-                <pre>{JSON.stringify(certificate, null, 2)}</pre>
+                <pre>{certificate.vin}</pre>
+                <pre>{certificate.make}</pre>
+                <pre>{certificate.model}</pre>
+                <pre>{certificate.mileage}</pre>
+                <pre>{certificate.cpuErrors}</pre>
+                <pre>{certificate.serviceHistory}</pre>
+                <pre>{certificate.insuranceHistory}</pre>
               </div>
             )}
           </div>

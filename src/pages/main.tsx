@@ -30,7 +30,7 @@ export default function Home() {
         address: TRANSFERTRUST_CONTRACT_ADDRESS,
         functionName: 'createCarStatusCertificate',
         args: [
-          '123456',
+          'VIN123',
           'Toyota',
           'Corolla',
           BigInt(2021),
