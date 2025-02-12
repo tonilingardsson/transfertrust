@@ -17,6 +17,7 @@ export default function Home() {
   const { mintCertificate } = useMintCertificate();
   const [isLoading, setIsLoading] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
 
   useEffect(() => {
     setMounted(true);
@@ -30,16 +31,16 @@ export default function Home() {
         address: TRANSFERTRUST_CONTRACT_ADDRESS,
         functionName: 'createCarStatusCertificate',
         args: [
-          'VIN123',
+          '3X4M3N54RB3T3',
           'Toyota',
-          'Corolla',
-          BigInt(2021),
-          BigInt(1000),
+          'Verso',
+          2015,
+          123456789,
           'No errors',
-          BigInt(500),
+          987654321,
           'Service history',
           'Insurance history',
-          BigInt(10000),
+          10000,
         ],
       });
     } catch (error) {

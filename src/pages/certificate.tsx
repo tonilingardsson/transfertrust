@@ -104,6 +104,7 @@ export default function CertificatePage() {
                 <pre>{certificate.cpuErrors}</pre>
                 <pre>{certificate.serviceHistory}</pre>
                 <pre>{certificate.insuranceHistory}</pre>
+                <pre>{certificate.price}</pre>
               </div>
             )}
           </div>
